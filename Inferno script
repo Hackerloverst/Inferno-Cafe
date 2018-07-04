@@ -1,0 +1,23 @@
+//Packages you MUST include
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+const token = 'NDY0MDY4NjkzMDkwMTA3NDEy.Dh56ag.QuDcT39yHcz1CbqAlfiMA0mVemI'; //You should keep your token hidden at ALL times
+
+client.on('ready', () => { //Executes on bot startup
+    console.log(`${client.user.tag} >> Online`); 
+});
+
+client.on('message', message => {
+    let msg = message.content.toUpperCase();
+    const prefix = 'Ifc!'; //Your prefix
+
+    if (message.author.bot) return; //Ignore bots
+    if (message.channel.type === 'dm') return; //Ignore DMs
+
+    if (msg === prefix + 'PING') { //Checks if message is "!ping"
+        message.channel.send(`Pong: ${client.ping}ms`); //Send message to current channel
+    }
+});
+
+client.login(token); //Login
